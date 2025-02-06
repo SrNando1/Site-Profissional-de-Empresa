@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Índice</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="menu-bar">
+      <a href="index.html">Início</a>
+      <a href="portfolio.html">Portfólio</a>
+      <a href="budget.html">Pedido de Orçamento</a>
+      <a href="contactos.html">Contactos</a>
+    </div>
+
+    <!-- Barra lateral para carregar notícias RSS -->
+    <div class="sidebar" id="rss-feed">
+      <h2>Notícias RSS</h2>
+      <!-- Notícias RSS serão carregadas aqui -->
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="main-content" id="main-content">
+      <h1>Serviços de Elaboração de Sites</h1>
+      <p>
+        Aqui você encontrará informações sobre nossos serviços de elaboração de
+        sites, projetos recentes, e muito mais!
+      </p>
+
+      <div class="highlight">
+        <!-- Elementos destacados -->
+        <h2>Projetos Recentes</h2>
+        <p>
+          Confira nossos
+          <a href="portfolio.html" target="_blank"> últimos projetos</a> e veja
+          como podemos ajudar sua empresa a ter uma presença online de sucesso.
+        </p>
+      </div>
+
+      <!-- Área onde o conteúdo AJAX será carregado -->
+      <div id="ajax-content">
+        <div id="ajax-result"></div>
+      </div>
+    </div>
+
+    <script>
+      // URL do RSS e da API
+      const rssUrl =
+        "https://news.google.com/rss?hl=pt-PT&gl=PT&ceid=PT:pt-150";
+      const apiUrl =
+        "https://api.rss2json.com/v1/api.json?rss_url=" +
+        encodeURIComponent(rssUrl);
+
+      // Função para carregar e exibir notícias RSS de um feed externo usando a API
+      function loadRSS() {
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            let items = data.items;
+            let rssFeed = document.getElementById("rss-feed");
+
+            items.forEach((item) => {
+              let title = item.title;
+              let description = item.description;
+              let link = item.link;
+
+              let newsItem = document.createElement("div");
+              newsItem.className = "news-item";
+
+              newsItem.innerHTML = `
+                    <h3>${title}</h3>
+                    <p>${description}</p>
+                    <a href="${link}" target="_blank">Ler mais</a>
+                `;
+
+              rssFeed.appendChild(newsItem);
+            });
+          })
+          .catch((error) => console.error("Erro ao carregar o RSS:", error));
+      }
+
+      // Função para carregar conteúdo AJAX
+      function loadContent() {
+        fetch("conteudo.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("ajax-result").innerHTML = data;
+          })
+          .catch((error) =>
+            console.error("Erro ao carregar conteúdo AJAX:", error)
+          );
+      }
+
+      // Carregar o RSS e o conteúdo AJAX automaticamente ao carregar a página
+      document.addEventListener("DOMContentLoaded", () => {
+        loadRSS();
+        loadContent(); // Chamada da função para carregar o conteúdo AJAX automaticamente
+      });
+    </script>
+  </body>
+</html>

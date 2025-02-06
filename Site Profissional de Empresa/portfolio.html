@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="portfolio.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio</title>
+  </head>
+
+  <body>
+    <div class="menu-bar">
+      <a href="index.html">Início</a>
+      <a href="portfolio.html">Portfólio</a>
+      <a href="budget.html">Pedido de Orçamento</a>
+      <a href="contactos.html">Contactos</a>
+    </div>
+
+    <div class="content">
+      <h1>Portfólio</h1>
+      <div class="gallery">
+        <div class="div1" style="max-height: none">
+          <img
+            src="img/ (1).jpg"
+            alt="Projeto 1"
+            onclick="showProjectDetails('Projeto 1', 'Descrição do Projeto 1', 'img/ (1).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div2">
+          <img
+            src="img/ (2).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 2', 'Descrição do Projeto 2', 'img/ (2).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div3">
+          <img
+            src="img/ (1).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 3', 'Descrição do Projeto 3', 'img/ (1).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div4">
+          <img
+            src="img/ (2).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 4', 'Descrição do Projeto 4', 'img/ (2).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div5">
+          <img
+            src="img/ (1).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 5', 'Descrição do Projeto 5', 'img/ (1).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div6">
+          <img
+            src="img/ (2).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 6', 'Descrição do Projeto 6', 'img/ (2).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div7">
+          <img
+            src="img/ (1).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 7', 'Descrição do Projeto 7', 'img/ (1).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div8">
+          <img
+            src="img/ (2).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 8', 'Descrição do Projeto 8',  'img/ (2).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div9">
+          <img
+            src="img/ (1).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 9', 'Descrição do Projeto 9', 'img/ (1).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div10">
+          <img
+            src="img/ (2).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 10', 'Descrição do Projeto 10', 'img/ (2).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div11">
+          <img
+            src="img/ (1).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 11', 'Descrição do Projeto 11', 'img/ (1).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div12">
+          <img
+            src="img/ (2).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 12', 'Descrição do Projeto 12', 'img/ (2).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div13">
+          <img
+            src="img/ (1).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 13', 'Descrição do Projeto 13', 'img/ (1).jpg')"
+            class="gallery-img"
+          />
+        </div>
+        <div class="div14">
+          <img
+            src="img/ (2).jpg"
+            alt="Projeto 2"
+            onclick="showProjectDetails('Projeto 14', 'Descrição do Projeto 14', 'img/ (2).jpg')"
+            class="gallery-img"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function showProjectDetails(title, description, imageSrc) {
+      const newWindow = window.open("", "_blank");
+      newWindow.document.write(`
+      <html>
+        <head>
+          <title>${title}</title>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              padding: 20px;
+              text-align: center;
+            }
+            img {
+              max-width: 100%;
+              height: auto;
+              margin-top: 20px;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>${title}</h1>
+          <p>${description}</p>
+          <img src="${imageSrc}" alt="${title}" />
+        </body>
+      </html>
+    `);
+    }
+  </script>
+</html>

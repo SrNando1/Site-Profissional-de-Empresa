@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pedido de Orçamento</title>
+    <link rel="stylesheet" href="budget.css" />
+  </head>
+
+  <body>
+    <div class="menu-bar">
+      <a href="index.html">Início</a>
+      <a href="portfolio.html">Portfólio</a>
+      <a href="budget.html">Pedido de Orçamento</a>
+      <a href="contactos.html">Contactos</a>
+    </div>
+    <div class="content">
+      <h1>Dados</h1>
+      <label input type="text" id="nome">Nome</label>
+      <input type="text" id="nome" />
+      <label input type="text" id="apelido">Apelido</label>
+      <input type="text" id="apelido" />
+      <label input type="number" id="telemovel">Telemovel</label>
+      <input type="number" id="telemovel" />
+
+      <h1>Pedido de Orçamento</h1>
+      <form id="budget-form">
+        <label for="page-type">Tipo de Página</label>
+        <select id="page-type" name="page-type" onchange="calculateBudget()">
+          <option value="basic" data-price="500">Básica - 500€</option>
+          <option value="intermediate" data-price="1000">
+            Intermediária - 1000€
+          </option>
+          <option value="advanced" data-price="2000">Avançada - 2000€</option>
+        </select>
+        <label for="months">Prazo em Meses</label>
+        <input
+          type="number"
+          id="months"
+          name="months"
+          min="1"
+          onchange="calculateBudget()"
+        />
+        <label>Separadores Desejados</label>
+        <input
+          type="checkbox"
+          id="tab1"
+          name="tabs"
+          value="400"
+          onchange="calculateBudget()"
+        />
+        Quem somos
+
+        <input
+          type="checkbox"
+          id="tab2"
+          name="tabs"
+          value="400"
+          onchange="calculateBudget()"
+        />
+        Onde estamos
+
+        <input
+          type="checkbox"
+          id="tab3"
+          name="tabs"
+          value="400"
+          onchange="calculateBudget()"
+        />
+        Galeria de fotografias
+
+        <input
+          type="checkbox"
+          id="tab4"
+          name="tabs"
+          value="400"
+          onchange="calculateBudget()"
+        />
+        eCommerce
+
+        <input
+          type="checkbox"
+          id="tab5"
+          name="tabs"
+          value="400"
+          onchange="calculateBudget()"
+        />
+        Gestão Interna
+
+        <input
+          type="checkbox"
+          id="tab6"
+          name="tabs"
+          value="400"
+          onchange="calculateBudget()"
+        />
+        Noticias
+
+        <input
+          type="checkbox"
+          id="tab7"
+          name="tabs"
+          value="400"
+          onchange="calculateBudget()"
+        />
+        Redes sociais
+
+        <label for="final-budget">Orçamento Final</label>
+        <input type="text" id="final-budget" name="final-budget" readonly />
+      </form>
+    </div>
+  </body>
+
+  <style>
+    /* body {
+       background-color: rgb(179, 178, 178);
+     }
+
+     .content {
+       font-family: "Dosis", arial;
+       font-size: 16px;
+       margin: 0 auto;
+       padding: 25px;
+       width: 500px;
+       border-radius: 11px 11px 11px 11px;
+       -moz-border-radius: 11px 11px 11px 11px;
+       -webkit-border-radius: 11px 11px 11px 11px;
+       border: 0px solid #000000;
+     }
+
+     .content label {
+       display: block;
+       font-style: italic;
+       font-weight: bold;
+     }
+
+     .content input[type="text"],
+     .content input[type="number"],
+     .content select {
+       display: block;
+       margin-bottom: 15px; 
+       width: 100%; 
+     }
+     .content input[type="checkbox"] {
+       margin-right: 10px; 
+       margin-bottom: 15px;
+     }
+
+     .content {
+       background-color: #000000;
+       color: white;
+     }*/
+  </style>
+
+  <script>
+    function calculateBudget() {
+      const pageType = document.getElementById("page-type");
+      const months = document.getElementById("months").value;
+      const tabs = document.querySelectorAll('input[name="tabs"]:checked');
+      let basePrice = parseInt(
+        pageType.options[pageType.selectedIndex].dataset.price
+      );
+      let tabPrice = 0;
+
+      tabs.forEach((tab) => {
+        tabPrice += parseInt(tab.value);
+      });
+
+      let discount = Math.min(months * 0.05, 0.2);
+      let finalPrice = (basePrice + tabPrice) * (1 - discount);
+
+      document.getElementById("final-budget").value = `${finalPrice.toFixed(
+        2
+      )}€`;
+    }
+  </script>
+</html>
